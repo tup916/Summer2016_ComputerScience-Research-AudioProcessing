@@ -399,7 +399,6 @@ def StandardDeviation1(Person):
         sum += (miu - (Person[1][i][1] - Person[1][i][0])) * (miu - (Person[1][i][1] - Person[1][i][0]))
 
     standardDev = pow((sum / (n)), 0.5)
-    print (standardDev)
     return samples_to_time(standardDev)
 
 #Uses the python library numpy to calculate the standard deviation of speaking time
@@ -409,7 +408,6 @@ def StandardDeviation2(Person):
     for i in range (0, n):
         Diff.append(Person[1][i][1] - Person[1][i][0])
 
-    print (numpy.std(Diff))
     return samples_to_time(numpy.std(Diff))
         
 #=============================================
@@ -465,13 +463,12 @@ print ("The Average Speaking Time of Participant 1 is: ", AvgSpeakTime1)
 AvgSpeakTime2 = SpeakTime2 / numConv2
 print ("The Average Speaking Time of Participant 2 is: ", AvgSpeakTime2)
 
-#####################WORK TODO HERE######################################
 #Standard Deviation of speaking time: calculated two ways
 print ("The following is the standard deviation of speaking time.\nParticipant1:", end=" ")
-print (StandardDeviation1(Person1), end=" or using the inbuilt method: ")
-print (StandardDeviation2(Person1))
-print ("Participant2: ", StandardDeviation1(Person2), end=" or using the inbuilt method: ")
-print (StandardDeviation2(Person2))
+print (StandardDeviation1(Person1), "seconds or using the inbuilt method: ", end=" ")
+print (StandardDeviation2(Person1), "seconds.")
+print ("Participant2: ", StandardDeviation1(Person2), "seconds or using the inbuilt method: ", end=" ")
+print (StandardDeviation2(Person2), "seconds.")
 
 #Dominance of one participant
 Dominance(SpeakTime1, SpeakTime2, numConv1, numConv2)
