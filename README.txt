@@ -25,7 +25,7 @@ Using audio chat as data, where each file has one side of the conversation recor
 		-emotional content of words, etc. 
 
 3. Emotional Speech
-	Extracting emotional content formt he audio properties of the speech signal, using features such as the speed, timbre, etc.
+	Extracting emotional content form the audio properties of the speech signal, using features such as the speed, timbre, etc.
 
 
 
