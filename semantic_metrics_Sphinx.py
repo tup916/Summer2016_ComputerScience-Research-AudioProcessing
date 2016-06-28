@@ -5,7 +5,7 @@
 #Department of Computer Science
 #University of Saskatchewan
 
-#Semantics Metrics
+#Semantic Metrics
 
 #NOTE:
 #Sphinx IS NOT VERY ACCURATE WITH THE TRANSCRIPTIONS. 10-15%

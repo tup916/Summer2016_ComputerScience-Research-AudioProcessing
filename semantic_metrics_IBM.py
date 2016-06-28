@@ -5,7 +5,7 @@
 #Department of Computer Science
 #University of Saskatchewan
 
-#Semantics Metrics
+#Semantic Metrics
 
 #imports
 import speech_recognition as sr

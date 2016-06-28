@@ -4,7 +4,7 @@
 #Department of Computer Science
 #University of Saskatchewan
 
-#Semantics Metrics
+#Semantic Metrics
 
 #NOTE: IMPORTANT:
 #THIS PIECE OF CODE ONLY TRANSCRIBES THE FIRST FEW SENTENCES OF THE SPEAKER IN THE FILE
