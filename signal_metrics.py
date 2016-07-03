@@ -17,8 +17,10 @@ import matplotlib.pyplot as plt
 
 #reading files
 # two files for two conversations
-data1, samplerate = sf.read('T:/audioClips/17x20_17_1459804934.wav')
-data2, samplerate = sf.read('T:/audioClips/17x20_20_1459804934.wav')
+clip1 = '17x20_17_1459804934.wav'
+clip2 = '17x20_20_1459804934.wav'
+data1, samplerate = sf.read('T:/audioClips/'+clip1)
+data2, samplerate = sf.read('T:/audioClips/'+clip2)
 
 
 #lambdas that I need:
@@ -307,15 +309,15 @@ def TotalSpeakingTime(Person):
 
 #Given two Persons's Silences and Conversations,
 # returns in a tuple, the total speaking times of both
-def TotalSpeakingTimes(Person1, Person2, show = True):
+def TotalSpeakingTimes(Person1, Person2, show = False):
     if (show):
         SpeakTime1 = TotalSpeakingTime(Person1)
         print("The total speaking time of Participant 1 was: ", SpeakTime1)
         SpeakTime2 = TotalSpeakingTime(Person2)
         print("The total speaking time of Participant 2 was: ", SpeakTime2)
     else:
-        SpeakTime1 = TotalSpeakingTime(Person1, "")
-        SpeakTime2 = TotalSpeakingTime(Person2, "")
+        SpeakTime1 = TotalSpeakingTime(Person1)
+        SpeakTime2 = TotalSpeakingTime(Person2)
     return (SpeakTime1, SpeakTime2)     
 
 def AveragePauseTime(Person1):
@@ -383,20 +385,23 @@ def PauseIntervals(Person1, Person2, show = False):
 # in terms of the length of their speech, and
 # in terms of the number of Conversational turns
 # Does not return anything
+#Returns a tuple, first element:: dominating participant (length of speech)
+#                 second element:: dominating participant (# turns)
 def Dominance(SpeakTime1, SpeakTime2, numConv1, numConv2):
-    print ("The dominating participant (in terms of length of speech) is:", end=" ")
+    List = []
+    #print ("The dominating participant (in terms of length of speech) is:", end=" ")
     if (max(SpeakTime1, SpeakTime2) == SpeakTime1):
-        print ("Participant 1")
+        List.append("P1")
     else:
-        print ("Participant 2")
+        List.append("P2")
 
-    print ("The dominating participant (in terms of the number of times the person spoke) is:", end=" ")
+    #print ("The dominating participant (in terms of the number of times the person spoke) is:", end=" ")
     if (max(numConv1, numConv2) == numConv1):
-        print ("Participant 1")
+        List.append("P1")
     else:
-        print ("Participant 2")
+        List.append("P2")
 
-    return;
+    return (List[0], List[1]);
 
 
 #Calculates the standard deviation of a person's speaking time.
@@ -452,77 +457,87 @@ Person2[0] = updateSilence(Person2[0], Person2[2])
 
 #Average pause time
     #The same speaker stops speaking and then speaks again
-print ("The Average Pause time for Participant1 is: ", AveragePauseTime(Person1))
-print ("The Average Pause time for Participant2 is: ", AveragePauseTime(Person2))
+avgPauseTimeP1 = AveragePauseTime(Person1)
+avgPauseTimeP2 = AveragePauseTime(Person2)
 
 
 #Conversational Turns
-print("There were", end = " ")
 numConv1 = len(Person1[1])
 numConv2 = len(Person2[1])
 ConversationalTurns = min(numConv1, numConv2)
-print (ConversationalTurns, " conversational turns.")
-
 
 
 #Average Speaking time
 SpeakTime1, SpeakTime2 = TotalSpeakingTimes(Person1, Person2)
-    #Average Speaking time of speaker 1:
+#Average Speaking time of speaker 1:
 AvgSpeakTime1 = SpeakTime1 / numConv1
-print ("The Average Speaking Time of Participant 1 is: ", AvgSpeakTime1)
-    #Average Speaking time of speaker 2:
+
+#Average Speaking time of speaker 2:
 AvgSpeakTime2 = SpeakTime2 / numConv2
-print ("The Average Speaking Time of Participant 2 is: ", AvgSpeakTime2)
 
 #Standard Deviation of speaking time: calculated two ways
-print ("The following is the standard deviation of speaking time.\nParticipant1:", end=" ")
-print (StandardDeviation1(Person1), "seconds or using the inbuilt method: ", end=" ")
-print (StandardDeviation2(Person1), "seconds.")
-print ("Participant2: ", StandardDeviation1(Person2), "seconds or using the inbuilt method: ", end=" ")
-print (StandardDeviation2(Person2), "seconds.")
+StdDevP1 = StandardDeviation1(Person1)
+StdDevP2 = StandardDeviation1(Person2)
+       
 
 #Dominance of one participant
-Dominance(SpeakTime1, SpeakTime2, numConv1, numConv2)
+DomSpeakTime, DomNumTurns = Dominance(SpeakTime1, SpeakTime2, numConv1, numConv2)
 
 #Silence in the conversation
 #Silence in both audios
 #(Common silence)
-print ("Common Silences:")
+#print ("Common Silences:")
 commonSilence = commonSilences(Person1[0], Person2[0])
-printTimeIntervals(commonSilence)
+#printTimeIntervals(commonSilence)
 
 #TotalSilence
 commonSilenceTotalSamples = TotalSpeakingSamples(commonSilence)
 commonSilenceTotalTime = samples_to_time(commonSilenceTotalSamples)
-print ("There was a total silence of ", commonSilenceTotalTime, " seconds.")
+#print ("There was a total silence of ", commonSilenceTotalTime, " seconds.")
 
 silenceRatio = percent_silence(commonSilenceTotalSamples, len(Data1))
-print ("The conversation was ", silenceRatio*100, "% silent.")
+#print ("The conversation was ", silenceRatio*100, "% silent.")
 
 
 #AverageSilence
-AverageSilence = commonSilenceTotalSamples / len(commonSilence)
-print ("The average silence was for ", samples_to_time(AverageSilence), " seconds.")
+AverageSilenceSamples = commonSilenceTotalSamples / len(commonSilence)
+AverageSilenceTime = samples_to_time(AverageSilenceSamples)
+#print ("The average silence was for ", AverageSilenceTime , " seconds.")
+
+#Change printAllIntervals to true if you want all intervals to be printed: includes: individual silences, conversations, pauses
+printAllIntervals = False;
+if printAllIntervals:
+    print ("*****************************************************")
+    print ("Silence Intervals of Participant1:")
+    printTimeIntervals(Person1[0])
+    print ("Conversational Intervals of Participant1:")
+    printTimeIntervals(Person1[1])
+    print ("Pause Intervals of Participant1:")
+    printTimeIntervals(Person1[2])
+
+    print ("*****************************************************")
+
+    print ("Silence Intervals of Participant2:")
+    printTimeIntervals(Person2[0])
+    print ("Conversational Intervals of Participant2:")
+    printTimeIntervals(Person2[1])
+    print ("Pause Intervals of Participant2:")
+    printTimeIntervals(Person2[2])
+
+    print ("*****************************************************")
 
 
-print ("*****************************************************")
-print ("Silence Intervals of Participant1:")
-printTimeIntervals(Person1[0])
-print ("Conversational Intervals of Participant1:")
-printTimeIntervals(Person1[1])
-print ("Pause Intervals of Participant1:")
-printTimeIntervals(Person1[2])
-
-print ("*****************************************************")
-
-print ("Silence Intervals of Participant2:")
-printTimeIntervals(Person2[0])
-print ("Conversational Intervals of Participant2:")
-printTimeIntervals(Person2[1])
-print ("Pause Intervals of Participant2:")
-printTimeIntervals(Person2[2])
-
-print ("*****************************************************")
-
+printInCSV = True;
+if printInCSV:
+    import csv
+    Data_all = [clip1, clip2, SpeakTime1, SpeakTime2, numConv1, numConv2, ConversationalTurns, AvgSpeakTime1, AvgSpeakTime2,
+                avgPauseTimeP1, avgPauseTimeP2, StdDevP1, StdDevP2, DomSpeakTime, DomNumTurns,
+                commonSilenceTotalTime, silenceRatio, AverageSilenceTime]
+    with open('signal_data.csv', 'a', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(['clip1', 'clip2', 'SpeakTime1', 'SpeakTime2', 'numConv1', 'numConv2', 'ConversationalTurns', 'AvgSpeakTime1', 'AvgSpeakTime2',
+                'avgPauseTimeP1', 'avgPauseTimeP2', 'StdDevP1', 'StdDevP2', 'DomSpeakTime', 'DomNumTurns',
+                'commonSilenceTotalTime', 'silenceRatio', 'AverageSilenceTime'])
+        writer.writerow(Data_all)
 	
 #END of SIGNAL METRICS
