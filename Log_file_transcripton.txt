@@ -1,0 +1,63 @@
+//Created by:
+//Tushita Patel
+//July 11, 2016
+//Supervisor: Regan Mandryk
+//HCI Lab
+//Department of Computer Science
+//University of Saskatchewan
+
+DOCUMENTATION FILE FOR VARIOUS TRANSCRIPTION TOOLS
+
+All files should be of format .wav (to be safe)
+
+!!IMPORTANT NOTE!! : To see the code to run each of the tools, look at #6.
+1. SPHINX
+- Completely free
+- Unlimited
+- Very easy to run
+- The most inaccurate I have found so far
+
+
+2. MICROSOFT BING VOICE RECOGNITION 
+- Need to acquire a BING Key
+- There is a quota of 5000 free transactions per month
+- The software would only transcribe the first few words => Not a complete transcription of the entire audio file
+- This is because the documentations says:
+	"Your application must endpoint the audio to determine start and end of speech, which in turn is used by the service to determine the start and end of the request. 
+	You may not upload more than 10 seconds of audio in any one request and the total request duration cannot exceed 14 seconds."
+- If it exceeds 14 seconds, it gives this error: recognition request failed: Request timed out (> 14000 ms)
+- However, this is probably the most accurate transcription I have come across
+- Click on "Get started for free", and go from there. https://www.microsoft.com/cognitive-services/en-us/speech-api
+
+
+3. GOOGLE SPEECH TO TEXT API
+- Need to send in request to do so
+- Cannot comment because my request never got reviewed
+- Here is the link to apply to get the API:
+  https://cloud.google.com/speech/?utm_source=google&utm_medium=cpc&utm_campaign=2015-q2-cloud-na-solutions-bkws-freetrial-en&gclid=Cj0KEQjw4827BRDJvpbVuKvx-rIBEiQA2_CzsHZxSUSeKDdXflxMquJsakIldUS4sJ6mkNAHCbZ6CoQaAvbz8P8HAQ
+
+4. IMB WATSON SPEECH TO TEXT
+- I ended up using this
+- Online demonstration: https://speech-to-text-demo.mybluemix.net/
+- Requires credentials: which can be obtained easily. Instructions: https://www.ibm.com/watson/developercloud/doc/getting_started/gs-credentials.shtml#getCreds
+- Free quota of 1000 minutes per month
+- Reasonably accurate
+
+
+5. Others that are out there that I haven't used:
+- https://api.ai/
+- https://wit.ai/
+- Dragon Naturally Speaking by Nuance ($$)
+- ++
+
+6. Recources that helped me:
+- Shows use of various APIs in python code. Very, very useful: https://github.com/Uberi/speech_recognition/blob/master/examples/audio_transcribe.py
+
+
+Created by:
+Tushita Patel
+July 11, 2016
+Supervisor: Regan Mandryk
+HCI Lab
+Department of Computer Science
+University of Saskatchewan
