@@ -6,6 +6,15 @@
 #University of Saskatchewan
 #Supervisor: Dr. Regan Mandryk
 
+My Supervisor asked me not to make the source files public. As a result, I cannot share them with you. Please contact me via email, and I would love to demonstrate them to you.
+
+Abstract: 
+Project TITLE: Awkward Silences: Investigating Relational Closeness using Auditory Analysis
+
+DESCRIPTION: 
+What makes a conversation awkward or pleasant? Can we computationally abstract information such as awkwardness and other features from recorded audio conversations? This research project is an attempt to extract information about people’s behavioural and emotional experience in one-to-one conversations using three types of metrics- signal metrics: using just the signals in a recorded audio, semantic metrics: transcribing the conversations and lexically calculating the effectiveness of the conversation, emotional speech: using the auditory features such as pitch and speed to infer emotions of the speaker. The extraction of such features in this project can be significantly useful in areas such as psychological and sociological research, speech pathology, quality control in costumer service and health. 
+\
+
 
 This project is to create analysis tools for all the projects that the department has going on in the area of distributed chat. 
 
