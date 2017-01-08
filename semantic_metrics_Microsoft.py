@@ -30,7 +30,7 @@ with sr.AudioFile(AUDIO_FILE) as source:
     audio = r.record(source) # read the entire audio file
 
 # recognize speech using Microsoft Bing Voice Recognition
-BING_KEY = "a2c50164d4d74b979547db64e6c4eb79" # Microsoft Bing Voice Recognition API keys 32-character lowercase hexadecimal strings
+BING_KEY = "" #"a2c50164d4d74b979547db64e6c4eb79" # Microsoft Bing Voice Recognition API keys 32-character lowercase hexadecimal strings
 try:
     print("Microsoft Bing Voice Recognition thinks you said: \n" + r.recognize_bing(audio, key=BING_KEY))
 except sr.UnknownValueError:
