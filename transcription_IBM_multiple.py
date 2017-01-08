@@ -25,9 +25,9 @@ import speech_recognition as sr
 listFilesName = open("audioNames.txt",'r+')
 
 # recognize speech using IBM Speech to Text
-IBM_USERNAME = "a3fdd0fd-2b3d-46f4-9269-bfca54b7ecef"
+IBM_USERNAME = "" #"a3fdd0fd-2b3d-46f4-9269-bfca54b7ecef"
 # IBM Speech to Text usernames are strings of the form XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
-IBM_PASSWORD = "PLC2gBqvVaJu" # IBM Speech to Text passwords are mixed-case alphanumeric strings
+IBM_PASSWORD = "" #"PLC2gBqvVaJu" # IBM Speech to Text passwords are mixed-case alphanumeric strings
 
 for fileName in listFilesName:
     # obtain path to fileName in the same folder as this script
