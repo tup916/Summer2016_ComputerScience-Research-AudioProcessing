@@ -24,8 +24,12 @@ with sr.AudioFile(AUDIO_FILE) as source:
     audio = r.record(source) # read the entire audio file
 
 # recognize speech using IBM Speech to Text
-IBM_USERNAME = "a3fdd0fd-2b3d-46f4-9269-bfca54b7ecef" # IBM Speech to Text usernames are strings of the form XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
-IBM_PASSWORD = "PLC2gBqvVaJu" # IBM Speech to Text passwords are mixed-case alphanumeric strings
+IBM_USERNAME = "" # IBM Speech to Text usernames are strings of the form XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+IBM_PASSWORD = "" # IBM Speech to Text passwords are mixed-case alphanumeric strings
+
+if IBM_USERNAME == "" or IBM_PASSWORD == "":
+    print("Username or password not provided)
+          
 try:
     print("IBM Speech to Text thinks you said: \n" + r.recognize_ibm(audio, username=IBM_USERNAME, password=IBM_PASSWORD))
 except sr.UnknownValueError:
